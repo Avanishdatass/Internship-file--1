@@ -1,0 +1,482 @@
++*In[10]:*+
+[source, ipython3]
+----
+print("Python:Exercises::PHP:exercises")
+----
+
+
++*Out[10]:*+
+----
+Python:Exercises::PHP:exercises
+----
+
+
++*In[12]:*+
+[source, ipython3]
+----
+{'SUMMARY' : ['hello, world!', ' test', '123four, five:; six...']}
+----
+
+
++*Out[12]:*+
+----{'SUMMARY': ['hello, world!', ' test', '123four, five:; six...']}----
+
+
++*In[18]:*+
+[source, ipython3]
+----
+import re
+text = 'The quick brown fox jumps over the lazy dog.'
+print(re.findall(r"\b\w{3,5}\b", text))
+
+----
+
+
++*Out[18]:*+
+----
+['The', 'quick', 'brown', 'fox', 'jumps', 'over', 'the', 'lazy', 'dog']
+----
+
+
++*In[21]:*+
+[source, ipython3]
+----
+import re
+items =  ["example (.com)", "hr@fliprobo (.com)","github(.com)", "Hello (Data Science World)", "Data (Scientist)"]
+for item in items:
+    print(re.sub(r" ?\([^)]+\)", "", item))
+	
+----
+
+
++*Out[21]:*+
+----
+example
+hr@fliprobo
+github
+Hello
+Data
+----
+
+
++*In[25]:*+
+[source, ipython3]
+----
+import re
+text ="importanceOfRegularExpressionsInPython"
+print(re.findall('[A-Z][^A-Z]*', text))
+
+----
+
+
++*Out[25]:*+
+----
+['Of', 'Regular', 'Expressions', 'In', 'Python']
+----
+
+
++*In[1]:*+
+[source, ipython3]
+----
+import re
+def text_match(text):
+        patterns = '^[a-zA-Z0-9_]*$'
+        if re.search(patterns,  text):
+                return 'Found a match!'
+        else:
+                return('Not matched!')
+
+print(text_match("The quick brown fox jumps over the lazy dog."))
+print(text_match("Python_Exercises_1"))
+
+----
+
+
++*Out[1]:*+
+----
+Not matched!
+Found a match!
+----
+
+
++*In[2]:*+
+[source, ipython3]
+----
+import re
+def match_num(string):
+    text = re.compile(r"^5")
+    if text.match(string):
+        return True
+    else:
+        return False
+print(match_num('5-2345861'))
+print(match_num('6-2345861'))
+
+----
+
+
++*Out[2]:*+
+----
+True
+False
+----
+
+
++*In[3]:*+
+[source, ipython3]
+----
+import re
+ip = "219.08.093.186"
+string = re.sub('\.[0]*', '.', ip)
+print(string)
+
+----
+
+
++*Out[3]:*+
+----
+219.8.93.186
+----
+
+
++*In[3]:*+
+[source, ipython3]
+----
+import re
+#storing the value of datestring in a variable
+datestring = 'August 15th 1947'
+#use re.match() functions to match the datestring
+str =re.match('(\d{2})[/.-](\d{2})[/.-](\d{4})$', datestring)
+#printing the str.group()
+print ("The first input date string is", str.group())
+#again declaring the datestring variable with different date format
+datestring = 'August 15th 1947'
+#matching the datestring with re.match() functions.
+str=re.match('(\d{2})[/.-](\d{2})[/.-](\d{4})$', datestring)
+#printing the str
+print ("Matching both the date input if it's in the same format or not:", str)
+----
+
+
++*Out[3]:*+
+----
+
+    ---------------------------------------------------------------------------
+
+    AttributeError                            Traceback (most recent call last)
+
+    Cell In[3], line 7
+          5 str =re.match('(\d{2})[/.-](\d{2})[/.-](\d{4})$', datestring)
+          6 #printing the str.group()
+    ----> 7 print ("The first input date string is", str.group())
+          8 #again declaring the datestring variable with different date format
+          9 datestring = 'August 15th 1947'
+    
+
+    AttributeError: 'NoneType' object has no attribute 'group'
+
+----
+
+
++*In[4]:*+
+[source, ipython3]
+----
+import re
+patterns = [ 'fox', 'dog', 'horse' ]
+text = 'The quick brown fox jumps over the lazy dog.'
+for pattern in patterns:
+    print('Searching for "%s" in "%s" ->' % (pattern, text),)
+    if re.search(pattern,  text):
+        print('Matched!')
+    else:
+        print('Not Matched!')
+		
+----
+
+
++*Out[4]:*+
+----
+Searching for "fox" in "The quick brown fox jumps over the lazy dog." ->
+Matched!
+Searching for "dog" in "The quick brown fox jumps over the lazy dog." ->
+Matched!
+Searching for "horse" in "The quick brown fox jumps over the lazy dog." ->
+Not Matched!
+----
+
+
++*In[6]:*+
+[source, ipython3]
+----
+import re
+pattern = 'fox'
+text = 'The quick brown fox jumps over the lazy dog.'
+match = re.search(pattern, text)
+s = match.start()
+e = match.end()
+print('Found "%s" in "%s" from %d to %d ' % \
+    (match.re.pattern, match.string, s, e))
+	
+----
+
+
++*Out[6]:*+
+----
+Found "fox" in "The quick brown fox jumps over the lazy dog." from 16 to 19 
+----
+
+
++*In[7]:*+
+[source, ipython3]
+----
+import re
+text = 'Python exercises, PHP exercises, C# exercises'
+pattern = 'exercises'
+for match in re.findall(pattern, text):
+    print('Found "%s"' % match)
+	
+----
+
+
++*Out[7]:*+
+----
+Found "exercises"
+Found "exercises"
+Found "exercises"
+----
+
+
++*In[8]:*+
+[source, ipython3]
+----
+import re
+text = 'Python exercises, PHP exercises, C# exercises'
+pattern = 'exercises'
+for match in re.finditer(pattern, text):
+    s = match.start()
+    e = match.end()
+    print('Found "%s" at %d:%d' % (text[s:e], s, e))
+	
+----
+
+
++*Out[8]:*+
+----
+Found "exercises" at 7:16
+Found "exercises" at 22:31
+Found "exercises" at 36:45
+----
+
+
++*In[9]:*+
+[source, ipython3]
+----
+import re
+def change_date_format(dt):
+        return re.sub(r'(\d{4})-(\d{1,2})-(\d{1,2})', '\\3-\\2-\\1', dt)
+dt1 = "2026-01-02"
+print("Original date in YYY-MM-DD Format: ",dt1)
+print("New date in DD-MM-YYYY Format: ",change_date_format(dt1))
+
+----
+
+
++*Out[9]:*+
+----
+Original date in YYY-MM-DD Format:  2026-01-02
+New date in DD-MM-YYYY Format:  02-01-2026
+----
+
+
++*In[11]:*+
+[source, ipython3]
+----
+import re
+
+def find_decimal_numbers(string):
+  pattern = re.compile(r'\d+\.\d{1,2}')
+  decimal_numbers = re.findall(pattern, string)
+  return decimal_numbers
+
+sample_text = "01.12 0132.123 2.31875 145.8 3.01 27.25 0.25"
+output = find_decimal_numbers(sample_text)
+print(output)
+----
+
+
++*Out[11]:*+
+----
+['01.12', '0132.12', '2.31', '145.8', '3.01', '27.25', '0.25']
+----
+
+
++*In[12]:*+
+[source, ipython3]
+----
+import re
+# Input.
+text = "The following example creates an ArrayList with a capacity of 50 elements. Four elements are then added to the ArrayList and the ArrayList is trimmed accordingly."
+
+for m in re.finditer("\d+", text):
+    print(m.group(0))
+    print("Index position:", m.start())
+	
+----
+
+
++*Out[12]:*+
+----
+50
+Index position: 62
+----
+
+
++*In[13]:*+
+[source, ipython3]
+----
+import re
+
+input_string = 'My marks in each semester are: 947, 896, 926, 524, 734, 950, 642'
+
+numeric_values = re.findall(r'\d+', input_string)
+numeric_values = [int(value) for value in numeric_values]
+
+max_value = max(numeric_values)
+
+print(max_value)
+----
+
+
++*Out[13]:*+
+----
+950
+----
+
+
++*In[15]:*+
+[source, ipython3]
+----
+import re
+
+def insert_spaces(text):
+  # Use regular expression to find words starting with capital letters
+  pattern = r'([A-Z][a-z]+)'
+  # Replace the found words with the same word followed by a space
+  result = re.sub(pattern, r' \1', text)
+  # Remove any leading or trailing spaces
+  result = result.strip()
+  return result
+
+sample_text = "RegularExpressionIsAnImportantTopicInPython"
+output = insert_spaces(sample_text)
+print(output)
+----
+
+
++*Out[15]:*+
+----
+Regular Expression Is An Important Topic In Python
+----
+
+
++*In[16]:*+
+[source, ipython3]
+----
+import re
+def text_match(text):
+        patterns = '[A-Z]+[a-z]+$'
+        if re.search(patterns, text):
+                return 'Found a match!'
+        else:
+                return('Not matched!')
+print(text_match("AaBbGg"))
+print(text_match("Python"))
+print(text_match("python"))
+print(text_match("PYTHON"))
+print(text_match("aA"))
+print(text_match("Aa"))
+
+----
+
+
++*Out[16]:*+
+----
+Found a match!
+Found a match!
+Not matched!
+Not matched!
+Not matched!
+Found a match!
+----
+
+
++*In[7]:*+
+[source, ipython3]
+----
+import re
+
+def remove_duplicates(sentence):
+  pattern = r'\b(\w+)(\s+\1\b)+'
+  result = re.sub(pattern, r'\1', sentence)
+  return result
+sentence = "Hello hello world world"
+output = remove_duplicates(sentence)
+print(output)
+----
+
+
++*Out[7]:*+
+----
+Hello hello world
+----
+
+
++*In[8]:*+
+[source, ipython3]
+----
+import re
+
+input_text = "@Jags123456 Bharat band on 28??<ed><U+00A0><U+00BD><ed><U+00B8><U+0082>Those who are protesting #demonetization are all different party leaders"
+
+pattern = r"<U\+\w{4}>"
+output_text = re.sub(pattern, "", input_text)
+
+print(output_text)
+----
+
+
++*Out[8]:*+
+----
+@Jags123456 Bharat band on 28??<ed><ed>Those who are protesting #demonetization are all different party leaders
+----
+
+
++*In[13]:*+
+[source, ipython3]
+----
+import re
+
+def remove_words(string):
+  pattern = re.compile(r'\b\w{2,4}\b')
+  modified_string = re.sub(pattern, '', string)
+  return modified_string
+
+sample_text = "The following example creates an ArrayList with a capacity of 50 elements. 4 elements are then added to the ArrayList and the ArrayList is trimmed accordingly."
+expected_output = "following example creates ArrayList a capacity elements. 4 elements added ArrayList ArrayList trimmed accordingly."
+
+result = remove_words(sample_text)
+print(result == expected_output)  
+----
+
+
++*Out[13]:*+
+----
+False
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+
+----
